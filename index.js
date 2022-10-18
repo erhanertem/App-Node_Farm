@@ -20,17 +20,29 @@ const fs = require('fs');
 
 fs.readFile('./txt/start.txt', 'utf-8', (err, data1) => {
   //async readFile bears err, data
+  //handling error
+  if (err) return console.log('You encountered an error!🔔');
+
   console.log(data1);
   fs.readFile(`./txt/${data1}.txt`, 'utf-8', (err, data2) => {
+    //handling error
+    if (err) return console.log('You encountered an error!🔔');
+
     console.log(data2);
     fs.readFile('./txt/append.txt', 'utf-8', (err, data3) => {
       console.log(data3);
+      //handling error
+      if (err) return console.log('You encountered an error!🔔');
+
       //Async write operation
       fs.writeFile(
         './txt/final.txt', //file to write to
         `${data2}\n${data3}`, // what to write - simply the content
         'utf-8', //txt encoding
         error => {
+          //handling error
+          if (err) return console.log('You encountered an error!🔔');
+
           console.log('The file has been written 🧿');
         } //async writeFile bears ONLY error
       );

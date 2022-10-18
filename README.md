@@ -9,7 +9,9 @@
 - Explore NodeJS Repl
 - Explore NodeJS Documentation
 - Node functionality:
-  - Read and write files
+  - Read and write files sync
+  - Read and write files async
+  - Layered async file operations
 
 &emsp;
 
