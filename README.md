@@ -8,6 +8,8 @@
 
 - Explore NodeJS Repl
 - Explore NodeJS Documentation
+- Node functionality:
+  - Read and write files
 
 &emsp;
 
