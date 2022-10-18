@@ -1,6 +1,7 @@
 //NOTE: NodeJS is built around modules which provide distinct functionality. fs stands for file system which prvoides us functions like reading writing deleting files. We load the node functionality to a variable and call pertinent functions built around it.
 const fs = require('fs'); //Acquire nodejs module and introduce to the file
 const http = require('http'); //Acquire nodejs module which provides ability to build a http server
+const url = require('url'); //Acquire nodejs module which provides ability to route to differing pages as response to server request by parsing the values entered to browser address
 
 // // -->FILES
 
@@ -58,8 +59,22 @@ const http = require('http'); //Acquire nodejs module which provides ability to 
 
 //->#1 Create a server
 const server = http.createServer((req, res) => {
-   res.end('Hello from the server!'); //signals to the server that all of the response headers and body have been sent - complete message. This has to be called on each response.
-};);
+  // console.log(req.url); //prints the parsed url
+  const pathName = req.url;
+  if (pathName === '/' || pathName === '/overview') {
+    res.end('This is the OVERVIEW PAGE');
+  } else if (pathName === '/product') {
+    res.end('This is the PRODUCT PAGE');
+  } else {
+    res.writeHead(404, {
+      'Content-type': 'text/html',
+      'my-custom-header': 'hello-world', //HEADER publishes the error text - a meta data about the error
+    }); //The browser developer panel console receives this message
+    // res.end('Page not found');
+    res.end('<h1>Page not found!</h1>');
+  }
+});
+
 //->#2 Start server listening @ *** port
 server.listen(8000, '127.0.0.1', () => {
   console.log('Listening to requests on port 8000');
