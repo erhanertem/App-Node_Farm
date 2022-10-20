@@ -59,6 +59,10 @@ const url = require('url'); //Acquire nodejs module which provides ability to ro
 //-->SERVER
 
 //->#1 Create a server with routes for differing pages along with a fall-back error handler in the absence of a correct address
+//THIS IS DATA THAT DO NOT CHANGE! So we read it once and assign to an obj to be more performant.
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
+const dataObj = JSON.parse(data); // We parse the read data to an obj.
+
 //We make use of http module to create server. Each time a request hits our server, the callback function of createServer is called.Req obj: We can request url, etc.Res obj: We have lots of tools available to deal with responses.
 const server = http.createServer((req, res) => {
   console.log(req.url); //prints the parsed url
@@ -74,18 +78,20 @@ const server = http.createServer((req, res) => {
     //   const productData = JSON.parse(data);
     //   console.log(productData);
     // });
-    //IMPORTANT! In case node is initiated in a different directory, the root directory signified with <.> also points to the node server directory which renders the file location false. Therefore, we have a better way of typing this dynamically by using <__dirname> as follows
-    fs.readFile(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
-      const productData = JSON.parse(data); //NOTE: Use JSON.parse() to parse the response for AJAX. Use json() to parse the response for fetch. We translate the JSON data to a string that JS can acknowledge
-      // console.log(productData);
-      res.writeHead(200, { 'Content-type': 'application/json' }); //We mark the HEADER succesfull
-      res.end(data); //We at the moment only send the raw JSON data back to the browser.
-    });
+    // //IMPORTANT! In case node is initiated in a different directory, the root directory signified with <.> also points to the node server directory which renders the file location false. Therefore, we have a better way of typing this dynamically by using <__dirname> as follows
+    // fs.readFile(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
+    //   const productData = JSON.parse(data); //NOTE: Use JSON.parse() to parse the response for AJAX. Use json() to parse the response for fetch. We translate the JSON data to a string that JS can acknowledge
+    //   // console.log(productData);
+    //   res.writeHead(200, { 'Content-type': 'application/json' }); //We mark the HEADER succesfull
+    //   res.end(data); //We at the moment only send the raw JSON data back to the browser.
+    // });
+    res.writeHead(200, { 'Content-type': 'application/json' }); //We mark the HEADER succesfull
+    res.end(data); //We at the moment only send the raw JSON data back to the browser.
   } else {
     //IMPORTANT! HEADER NEEDS TO BE SEND OUT BEFORE A RESPONSE SENT OUT.
     res.writeHead(404, {
-      'Content-type': 'text/html',
-      'my-custom-header': 'hello-world', //HEADER publishes the error text - a meta data about the error
+      'Content-type': 'text/html', //TELLS BROWSER WHATR TO EXPECT AS A RESPONSE
+      // 'my-custom-header': 'hello-world', //HEADER publishes the error text - a meta data about the error
     }); //The browser developer panel console receives this message
     // res.end('Page not found');
     res.end('<h1>Page not found!</h1>');
