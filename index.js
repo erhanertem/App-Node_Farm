@@ -83,7 +83,7 @@ const dataObj = JSON.parse(data); // We parse the read data to an obj.
 // console.log('dataobj:', dataObj);
 
 const slugs = dataObj.map(el => slugify(el.productName, { lower: true })); //Create a slugify array for each JSON item
-// console.log(slugs);
+console.log(slugs);
 // console.log(slugify('Fresh Avocados', { lower: true }));
 
 //We make use of http module to create server. Each time a request hits our server, the callback function of createServer is called.Req obj: We can request url, etc.Res obj: We have lots of tools available to deal with responses.
