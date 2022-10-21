@@ -3,6 +3,8 @@
 const fs = require('fs'); //Acquire nodejs module and introduce to the file
 const http = require('http'); //Acquire nodejs module which provides ability to build a http server
 const url = require('url'); //Acquire nodejs module which provides ability to route to differing pages as response to server request by parsing the values entered to browser address
+//--->3RD PARTY NPM PACKAGES
+const slugify = require('slugify');
 //--->IMPORT MODULE
 const replaceTemplate = require('./modules/replaceTemplate');
 
@@ -80,6 +82,10 @@ const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const dataObj = JSON.parse(data); // We parse the read data to an obj.
 // console.log('dataobj:', dataObj);
 
+const slugs = dataObj.map(el => slugify(el.productName, { lower: true })); //Create a slugify array for each JSON item
+// console.log(slugs);
+// console.log(slugify('Fresh Avocados', { lower: true }));
+
 //We make use of http module to create server. Each time a request hits our server, the callback function of createServer is called.Req obj: We can request url, etc.Res obj: We have lots of tools available to deal with responses.
 const server = http.createServer((req, res) => {
   // console.log(req); //prints the req obj
@@ -87,10 +93,10 @@ const server = http.createServer((req, res) => {
   // console.log('product click url object:', url.parse(req.url, true)); //Important This is a deprecated method.
   //Note: We take the url and parse as an object by designating the boolean parse value to true. By doing so, we acquire pathname as a seperate variable along with the path and query information.
   // console.log('request', req.headers.host);
-  console.log(
-    'product click url object:',
-    new URL(req.url, 'http://localhost:8000') //Note: In lieu of deprecated url.parse() method. We create a new URL object from our request with a following base address
-  );
+  // console.log(
+  //   'product click url object:',
+  //   new URL(req.url, 'http://localhost:8000') //Note: In lieu of deprecated url.parse() method. We create a new URL object from our request with a following base address
+  // );
   // const pathName = req.url;
 
   // const { query, pathName } = url.parse(req.url, true); //Deprecated method
