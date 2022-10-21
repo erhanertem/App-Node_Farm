@@ -14,6 +14,7 @@
   - Layered async file operations
   - Create server
   - Establish Routing
+- Create dynamic templates with placeholder inserts
 
 &emsp;
 
