@@ -20,7 +20,9 @@
 
 &emsp;
 
-#### Link to Project &rarr; [NodeFarm-App](https://nodefarm-app-erhan-ertem.netlify.app)
+<!-- #### Link to Project &rarr; [NodeFarm-App](https://nodefarm-app-erhan-ertem.netlify.app) -->
+
+#### Project Preview
 
 ![Screenshot](screenshot.gif)
 
