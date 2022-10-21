@@ -16,7 +16,7 @@
   - Establish Routing
 - Create dynamic templates with placeholder inserts
   - Uilize new URL constructor
-- Import/export modules within NodeJS
+- Import/export modules in NodeJS
 
 &emsp;
 
