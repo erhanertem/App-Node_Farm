@@ -27,3 +27,12 @@
 ---
 
 ![JS](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E) ![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+
+#### Installed NPM packages and utilized APIs:
+
+| Package command        | Package link                          | Description                                                         |
+| ---------------------- | ------------------------------------- | ------------------------------------------------------------------- |
+| npm install -g nodemon | https://www.npmjs.com/package/nodemon | Nodemon is a helper tool for developing Node.js based applications. |
+| npm install slugify    | https://www.npmjs.com/package/slugify | Fill in spaces with \_ or - .                                       |
+
+&emsp;

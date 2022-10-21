@@ -1,0 +1,25 @@
+{
+  "name": "app-node_farm",
+  "version": "1.0.0",
+  "description": "A small app for learning node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erhanertem/App-Node_Farm.git"
+  },
+  "author": "Erhan ERTEM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erhanertem/App-Node_Farm/issues"
+  },
+  "homepage": "https://github.com/erhanertem/App-Node_Farm#readme",
+  "dependencies": {
+    "slugify": "^1.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
