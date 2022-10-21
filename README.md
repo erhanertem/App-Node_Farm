@@ -16,12 +16,9 @@
   - Establish Routing
 - Create dynamic templates with placeholder inserts
   - Uilize new URL constructor
-<<<<<<< Updated upstream
-- Import/export modules in NodeJS
-=======
 - Import/export modules within NodeJS app
 - Import 3rd party npm package to nodeJS app
->>>>>>> Stashed changes
+
 
 &emsp;
 
