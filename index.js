@@ -1,7 +1,10 @@
+//--->CORE MODULES
 //NOTE: NodeJS is built around modules which provide distinct functionality. fs stands for file system which prvoides us functions like reading writing deleting files. We load the node functionality to a variable and call pertinent functions built around it.
 const fs = require('fs'); //Acquire nodejs module and introduce to the file
 const http = require('http'); //Acquire nodejs module which provides ability to build a http server
 const url = require('url'); //Acquire nodejs module which provides ability to route to differing pages as response to server request by parsing the values entered to browser address
+//--->IMPORT MODULE
+const replaceTemplate = require('./modules/replaceTemplate');
 
 // //-->FILES
 
@@ -59,23 +62,6 @@ const url = require('url'); //Acquire nodejs module which provides ability to ro
 //--->SERVER
 //-->#1 Create a server with routes for differing pages along with a fall-back error handler in the absence of a correct address
 
-const replaceTemplate = (template, product) => {
-  //VERY IMPORTANT! Its not a good practice to directly manipulate template HTML rather we replicated the manipulated version to a new variable called <output> from which we carried rest of the manuplations on it
-  let output = template.replaceAll('{%PRODUCTNAME%}', product.productName);
-  // output = output.replace(/{%IMAGE%}/g, product.image);// IMPORTANT! > global RegExp /.../g flag replaces all matching template placeholders.
-  output = output.replaceAll('{%IMAGE%}', product.image);
-  output = output.replaceAll('{%PRICE%}', product.price);
-  output = output.replaceAll('{%FROM%}', product.from);
-  output = output.replaceAll('{%NUTRIENTS%}', product.nutrients);
-  output = output.replaceAll('{%QUANTITY%}', product.quantity);
-  output = output.replaceAll('{%DESCRIPTION%}', product.description);
-  output = output.replaceAll('{%ID%}', product.id);
-  //ORGANIC IS A SPECIAL CASE. ITS SPECIFIED BOOLEAN VALUE IN THE JSON FILE WHICH DESIGNATES WHETHER THE ITEM GETS AN ORGANIC BADGE OR NOT VIA CSS CLASS MANIPULATION AS SEEN IN THE TEMPLATE FILES.
-  if (!product.organic)
-    output = output.replaceAll('{%NOT_ORGANIC%}', 'not-organic');
-
-  return output;
-};
 //THE SUBPAGE TEMPLATES WOULD NEVER CHANGE. So we read it once and assign to an obj to be more performant.
 const tempOverview = fs.readFileSync(
   `${__dirname}/templates/template-overview.html`,
