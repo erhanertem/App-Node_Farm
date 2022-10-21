@@ -97,11 +97,57 @@ const dataObj = JSON.parse(data); // We parse the read data to an obj.
 //We make use of http module to create server. Each time a request hits our server, the callback function of createServer is called.Req obj: We can request url, etc.Res obj: We have lots of tools available to deal with responses.
 const server = http.createServer((req, res) => {
   // console.log(req); //prints the req obj
-  console.log('requested url:', req.url); //prints the parsed url
-  const pathName = req.url;
+  // console.log('requested url:', req.url); //prints the parsed url
+  // console.log('product click url object:', url.parse(req.url, true)); //Important This is a deprecated method.
+  //Note: We take the url and parse as an object by designating the boolean parse value to true. By doing so, we acquire pathname as a seperate variable along with the path and query information.
+  // console.log('request', req.headers.host);
+  console.log(
+    'product click url object:',
+    new URL(req.url, 'http://localhost:8000') //Note: In lieu of deprecated url.parse() method. We create a new URL object from our request with a following base address
+  );
+  // const pathName = req.url;
+
+  // const { query, pathName } = url.parse(req.url, true); //Deprecated method
+  const { searchParams: query, pathname } = new URL(
+    req.url,
+    'http://localhost:8000'
+  ); //NOTE: Per current node URL API, we parse the requested url (RELATIVE URL) into an URL constructor object along with the BASEURL (http://localhost:8000) and extract the definitions we are interested in.
+  // console.log('searchparameters', searchParams.__proto__);
+  /*
+  INFORMATION
+1) The url.parse(req.url) method is deprecated
+the new way is using the URL constructor like so const myURL = new URL(absoluteURL)
+or const myURL =new URL(relativeURL, baseURL)
+2) The absoluteURL is a combination of the baseURL and the relativeURL/path.
+the baseURL is something like this; http://127.0.0.1:8000
+while the realtiveURL/path is something like this; /overview
+the absoluteURL can be gotten by joining the baseURL and the relativeURL like this; http://127.0.0.1:8000/overview
+All these information are stored in the req parameter of the callback function in the createServer() method
+You can find the baseURL in req.headers.host
+you can find the relativeURL in req.url
+3) You can find the query and the pathname from the myURL object that is returned by the URL constructor in searchParams and in pathname respectively but searchParams is equal to URLSearchParams { 'id' => '0' } not 0 to get the id value which is equal to 0 use the get() method on the searchParams like this searchParams.get("id") // 0
+So you can say
+const pathname = myURL.pathname;
+const query = myURL.searchParams.get("id");
+console.log(myURL)
+URL {
+  href: 'http://127.0.0.1:8000/product?id=0',
+  origin: 'http://127.0.0.1:8000',
+  protocol: 'http:',
+  username: '',
+  password: '',
+  host: '127.0.0.1:8000',
+  hostname: '127.0.0.1',
+  port: '8000',
+  pathname: '/product',
+  search: '?id=0', 
+  searchParams: URLSearchParams { 'id' => '0' },  //query = searchParams.get("id")
+  hash: ''
+}
+  */
 
   //->OVERVIEW PAGE
-  if (pathName === '/' || pathName === '/overview') {
+  if (pathname === '/' || pathname === '/overview') {
     res.writeHead(200, { 'Content-type': 'text/html' }); //specify the data type that the response is about
 
     const cardsHtml = dataObj.map(el => replaceTemplate(tempCard, el)).join(''); //combined all mapped array elements into one chunk of string
@@ -112,13 +158,16 @@ const server = http.createServer((req, res) => {
   }
 
   //->PRODUCT PAGE
-  else if (pathName === '/product') {
+  else if (pathname === '/product') {
     res.writeHead(200, { 'Content-type': 'text/html' }); //specify the data type that the response is about
-    res.end(tempProduct); //respond with the data specified
+    // const product = dataObj[query.id]; // We get a hang of the corrresponding JSON with the specified id/array order
+    const product = dataObj[query.get('id')]; // We get a hang of the corrresponding JSON with the specified id/array order
+    const output = replaceTemplate(tempProduct, product); //Replace the palceholders per the selected JSON item
+    res.end(output); //respond with data specified
   }
 
   //->API
-  else if (pathName === '/api') {
+  else if (pathname === '/api') {
     // fs.readFile('./dev-data/data.json', 'utf-8', (err, data) => {
     //   const productData = JSON.parse(data);
     //   console.log(productData);
