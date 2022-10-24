@@ -90,7 +90,7 @@ console.log(slugs);
 const server = http.createServer((req, res) => {
   // console.log(req); //prints the req obj
   // console.log('requested url:', req.url); //prints the parsed url
-  // console.log('product click url object:', url.parse(req.url, true)); //Important This is a deprecated method.
+  // console.log('product click url object:', url.parse(req.url, true)); //VERY IMPORTANT!  Deprecated method
   //Note: We take the url and parse as an object by designating the boolean parse value to true. By doing so, we acquire pathname as a seperate variable along with the path and query information.
   // console.log('request', req.headers.host);
   // console.log(
@@ -99,7 +99,7 @@ const server = http.createServer((req, res) => {
   // );
   // const pathName = req.url;
 
-  // const { query, pathName } = url.parse(req.url, true); //Deprecated method
+  // const { query, pathName } = url.parse(req.url, true); //VERY IMPORTANT! Deprecated method
   const { searchParams: query, pathname } = new URL(
     req.url,
     'http://localhost:8000'
