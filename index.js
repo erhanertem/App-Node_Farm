@@ -188,6 +188,6 @@ URL {
 });
 
 //-->#2 Start server listening @ port 8000 @ the current machine
-server.listen(5000, 'localhost', () => {
+server.listen(5000, '0.0.0.0', () => {
   console.log('Listening to requests on port 5000');
 });
