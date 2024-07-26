@@ -102,7 +102,7 @@ const server = http.createServer((req, res) => {
   // const { query, pathName } = url.parse(req.url, true); //VERY IMPORTANT! Deprecated method
   const { searchParams: query, pathname } = new URL(
     req.url,
-    'http://localhost:8000'
+    'http://localhost:5000'
   ); //NOTE: Per current node URL API, we parse the requested url (RELATIVE URL) into an URL constructor object along with the BASEURL (http://localhost:8000) and extract the definitions we are interested in.
   // console.log('searchparameters', searchParams.__proto__);
   /*
@@ -188,6 +188,6 @@ URL {
 });
 
 //-->#2 Start server listening @ port 8000 @ the current machine
-server.listen(8000, '127.0.0.1', () => {
-  console.log('Listening to requests on port 8000');
+server.listen(5000, 'localhost', () => {
+  console.log('Listening to requests on port 5000');
 });

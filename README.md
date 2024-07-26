@@ -19,26 +19,13 @@
 - Import/export modules within NodeJS app
 - Import 3rd party npm package to nodeJS app
 
-
 &emsp;
 
-<!-- #### Link to Project &rarr; [NodeFarm-App](https://nodefarm-app-erhan-ertem.netlify.app) -->
+#### [NodeFarm-App](https://nodefarm-app-erhan-ertem.netlify.app)
 
-#### Project Preview
-
-![Screenshot](screenshot.gif)
+<img src="./screenshot.webp" width="500px"/>
 
 ---
 
-![JS](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E) ![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-
-<details>
-<summary>Installed NPM packages and utilized APIs:</summary>
-
-| Package command        | Package link                          | Description                                                         |
-| ---------------------- | ------------------------------------- | ------------------------------------------------------------------- |
-| npm install -g nodemon | https://www.npmjs.com/package/nodemon | Nodemon is a helper tool for developing Node.js based applications. |
-| npm install slugify    | https://www.npmjs.com/package/slugify | Fill in spaces with \_ or - .                                       |
-</details>
-
-&emsp;
+![JS](https://img.shields.io/badge/JavaScript-323330?style=square&logo=javascript&logoColor=F7DF1E)
+![nodeJS](https://img.shields.io/badge/Node.js-339933?style=square&logo=nodedotjs&logoColor=white)

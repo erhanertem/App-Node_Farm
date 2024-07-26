@@ -4,7 +4,9 @@
   "description": "A small app for learning node.js",
   "main": "index.js",
   "scripts": {
-    "serve": "npx nodemon index.js"
+    "devalternate": "npx nodemon index.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
