@@ -20,7 +20,7 @@
 - Import 3rd party npm package to nodeJS app
 
 &emsp;
-###### ⚠️Free-tier MongoDB services get suspended leading to app dysfunction
+
 #### [NodeFarm-App](https://app-node-farm.onrender.com)
 
 <img src="./screenshot.webp" width="500px"/>
