@@ -15,7 +15,7 @@
   - Create server
   - Establish Routing
 - Create dynamic templates with placeholder inserts
-  - Uilize new URL constructor
+  - Utilize new URL constructor
 - Import/export modules within NodeJS app
 - Import 3rd party npm package to nodeJS app
 
