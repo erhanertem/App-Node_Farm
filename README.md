@@ -21,6 +21,8 @@
 
 &emsp;
 
+###### ⚠️Free-tier MongoDB services may get suspended leading to app dysfunction <br/> ⚠️Free-tier render services may experience throttling, leading to delayed app loading times.
+
 #### [NodeFarm-App](https://app-node-farm.onrender.com)
 
 <img src="./screenshot.webp" width="500px"/>
